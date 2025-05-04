@@ -22,6 +22,15 @@ const CandidateSearch = () => {
     setCurrentUser(data);
   };
 
+  // Fetch all candidates and set the first user as the current user
+  const fetchCandidates = async () => {
+    const candidatesData = await searchGithub();
+    setResults(candidatesData);
+    if (candidatesData.length > 0) {
+      await fetchSpecificUser(candidatesData[0].login || '');
+    }
+  };
+
 
 
   return (
