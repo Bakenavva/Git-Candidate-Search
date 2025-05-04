@@ -14,7 +14,13 @@ const SavedCandidateList = () => {
     setPotentialCandidates(validCandidates);
   }, []);
     
-
+  const rejectCandidate = (id: number) => {
+    const updatedCandidates = potentialCandidates.filter(
+      (candidate) => candidate.id !== id
+    );
+    localStorage.setItem('savedCandidates', JSON.stringify(updatedCandidates));
+    setPotentialCandidates(updatedCandidates);
+  };
 
 
 }
