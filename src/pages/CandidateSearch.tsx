@@ -31,6 +31,21 @@ const CandidateSearch = () => {
     }
   };
 
+  const userChoice = async (isSelected: boolean) => {
+    if (isSelected && currentUser) {
+      saveCandidate(currentUser);
+    }
+
+    // Move to next candidate or reset search
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < results.length) {
+      setCurrentIndex(nextIndex);
+      await fetchSpecificUser(results[nextIndex].login || '');
+    } else {
+      setCurrentIndex(0);
+      await fetchCandidates();
+    }
+  };
 
 
   return (
