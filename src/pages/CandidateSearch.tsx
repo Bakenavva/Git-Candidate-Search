@@ -59,13 +59,16 @@ const CandidateSearch = () => {
     }
   };
 
-
   return (
-
-
-
-  )
-
-}
+    <>
+      <h1>Candidate Search</h1>
+      {currentUser ? (
+        <CandidateCard currentUser={currentUser} userChoice={userChoice} />
+      ) : (
+        <p>Let me load!</p>
+      )}
+    </>
+  );
+};
 
 export default CandidateSearch;
