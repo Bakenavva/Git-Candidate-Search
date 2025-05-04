@@ -38,11 +38,48 @@ const SavedCandidate = ({ candidate, rejectCandidate }: SavedCandidateProps) => 
     },
   };
 
-
-
-  
-}
-
-
+  return (
+    <tr>
+      <td>
+        <img
+          src={candidate.avatar_url || 'https://placehold.co/70x70'}
+          alt={`Profile of ${candidate.login || 'Placeholder'}`}
+          style={styles.avatar}
+        />
+      </td>
+      <td>
+        <a href={candidate.html_url || '#'} target="_blank" rel="noreferrer">
+          <h3 style={styles.name}>
+            {candidate.name}
+            <br />
+            <em>({candidate.login})</em>
+          </h3>
+        </a>
+      </td>
+      <td>{candidate.location || 'N/A'}</td>
+      <td>
+        {candidate.email ? (
+          <a href={`mailto:${candidate.email}`}>{candidate.email}</a>
+        ) : (
+          'N/A'
+        )}
+      </td>
+      <td>{candidate.company || 'N/A'}</td>
+      <td>
+        <div
+          style={{maxHeight: '100px', overflowY: 'scroll', textAlign: 'justify',}}
+          > 
+          {candidate.bio || 'No bio available'}
+        </div>
+      </td>
+      <td>
+        <IoRemoveCircle
+          style={styles.removeButton}
+          onClick={() => rejectCandidate(candidate.id || 0)}
+        />
+      </td>
+    </tr>
+  );
+};
 
 export default SavedCandidate;
