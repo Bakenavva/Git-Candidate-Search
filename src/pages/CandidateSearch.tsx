@@ -13,6 +13,15 @@ const CandidateSearch = () => {
     fetchCandidates();
   }, []);
 
+  const fetchSpecificUser = async (user: string) => {
+    if (!user) {
+      console.error('No user login provided');
+      return;
+    }
+    const data = await searchGithubUser(user);
+    setCurrentUser(data);
+  };
+
 
 
   return (
