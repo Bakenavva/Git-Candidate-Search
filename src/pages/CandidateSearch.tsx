@@ -47,6 +47,18 @@ const CandidateSearch = () => {
     }
   };
 
+  // Save candidate to localStorage
+  const saveCandidate = (candidate: Candidate) => {
+    try {
+      const savedCandidates = localStorage.getItem('savedCandidates');
+      const parsedCandidates: Candidate[] = savedCandidates ? JSON.parse(savedCandidates) : [];
+      parsedCandidates.push(candidate);
+      localStorage.setItem('savedCandidates', JSON.stringify(parsedCandidates));
+    } catch (error) {
+      console.error('Error saving candidate:', error);
+    }
+  };
+
 
   return (
 
