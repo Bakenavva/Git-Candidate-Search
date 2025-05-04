@@ -22,7 +22,30 @@ const SavedCandidateList = () => {
     setPotentialCandidates(updatedCandidates);
   };
 
-
-}
+  return (
+    <table className='table'>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Email</th>
+          <th>Company</th>
+          <th>Bio</th>
+          <th>Reject</th>
+        </tr>
+      </thead>
+      <tbody>
+        {potentialCandidates.map((candidate, index) => (
+          <SavedCandidate
+            key={`${candidate.id || `placeholder`}-${index}`}
+            candidate={candidate}
+            rejectCandidate={rejectCandidate}
+          />
+        ))}
+      </tbody>
+    </table>
+  );
+};
 
 export default SavedCandidateList;
